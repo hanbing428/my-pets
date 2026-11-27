@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="docx-page-size" content="A4">
+<title>第 01 集 — 即梦 AI 剪辑成片方案</title>
+<style>
+:root {
+  /* Typography tokens */
+  --typography-fontFamily-heading: "Microsoft YaHei";
+  --typography-fontFamily-body: "SimSun";
+  --typography-fontSize-cover: 28pt;
+  --typography-fontSize-h1: 16pt;
+  --typography-fontSize-h2: 13pt;
+  --typography-fontSize-body: 12pt;
+  --typography-fontSize-small: 10.5pt;
+  --typography-lineHeight-body: 1.7;
+  --typography-lineHeight-heading: 1.35;
+  --typography-fontWeight-bold: 700;
+  --typography-fontWeight-normal: 400;
+  /* Colors (warm palette, matching the puppy IP) */
+  --color-primary: #B45309;
+  --color-primary-soft: #D97706;
+  --color-text: #292524;
+  --color-muted: #78716C;
+  --color-border: #E7E2D9;
+  --color-bg: #FFFFFF;
+  --color-cover-bg: #FBF6EE;
+  --color-callout-bg: #FDF4E7;
+  --color-table-head-bg: #F3E4CC;
+  --color-table-alt-bg: #FBF8F2;
+  /* Spacing */
+  --spacing-paragraph: 0.7em;
+  --spacing-section: 1.6em;
+  --spacing-block: 1em;
+  --spacing-cell: 0.35em;
+  /* Layout */
+  --layout-margin: 2.4cm;
+  --layout-contentWidth: 15.6cm;
+  --border-h1: 2px;
+  --border-callout: 4px;
+  --width-full: 100%;
+  /* Aliases */
+  --fs-cover-title: var(--typography-fontSize-cover);
+  --fs-h1: var(--typography-fontSize-h1);
+  --fs-h2: var(--typography-fontSize-h2);
+  --fs-body: var(--typography-fontSize-body);
+  --fs-small: var(--typography-fontSize-small);
+  --ff-heading: var(--typography-fontFamily-heading);
+  --ff-body: var(--typography-fontFamily-body);
+  --lh-body: var(--typography-lineHeight-body);
+  --lh-heading: var(--typography-lineHeight-heading);
+  --fw-bold: var(--typography-fontWeight-bold);
+  --fw-normal: var(--typography-fontWeight-normal);
+  --page-content-width: var(--layout-contentWidth);
+  --page-content-width-landscape: 24.7cm;
+  --margin-page: var(--layout-margin);
+}
+
+@page { margin: var(--margin-page); @bottom-center { content: counter(page); } }
+@page cover { @bottom-center { content: none; } }
+section[role="cover"] { page: cover; }
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  max-width: var(--page-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Cover ---------- */
+.cover-kicker {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-body);
+  color: var(--color-primary);
+  text-align: center;
+  letter-spacing: 0.3em;
+  margin-top: var(--spacing-section);
+}
+.cover-title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-cover-title);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-align: center;
+  line-height: var(--lh-heading);
+  margin-top: var(--spacing-section);
+}
+.cover-subtitle {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h2);
+  color: var(--color-muted);
+  text-align: center;
+  margin-top: var(--spacing-block);
+}
+.cover-meta {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  text-align: center;
+  margin-top: var(--spacing-section);
+}
+.cover-note {
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  text-align: center;
+  margin-top: var(--spacing-section);
+}
+
+/* ---------- TOC ---------- */
+.toc-title {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-section);
+}
+.toc-list, .toc-list ol, .toc-list ul { list-style: none; }
+.toc-list li {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-paragraph);
+}
+.toc-list ol li {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-left: var(--spacing-section);
+}
+
+/* ---------- Headings ---------- */
+h1 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  line-height: var(--lh-heading);
+  border-bottom: var(--border-h1) solid var(--color-border);
+  padding-bottom: var(--spacing-cell);
+  margin-top: var(--spacing-section);
+  margin-bottom: var(--spacing-block);
+}
+h2 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary-soft);
+  line-height: var(--lh-heading);
+  margin-top: var(--spacing-block);
+  margin-bottom: var(--spacing-paragraph);
+}
+
+/* ---------- Body ---------- */
+p {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  text-indent: 2em;
+  margin-top: var(--spacing-paragraph);
+  margin-bottom: var(--spacing-paragraph);
+}
+ol, ul {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  margin-top: var(--spacing-paragraph);
+  margin-bottom: var(--spacing-block);
+}
+li {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  text-indent: 0;
+  margin-bottom: var(--spacing-paragraph);
+}
+strong { font-weight: var(--fw-bold); }
+
+/* ---------- Callout ---------- */
+.callout {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  text-indent: 0;
+  border-left: var(--border-callout) solid var(--color-primary-soft);
+  background: var(--color-callout-bg);
+  padding: var(--spacing-block);
+  margin-top: var(--spacing-block);
+  margin-bottom: var(--spacing-block);
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: var(--width-full);
+  border-collapse: collapse;
+  margin-top: var(--spacing-block);
+  margin-bottom: var(--spacing-block);
+}
+th {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  background: var(--color-table-head-bg);
+  border: var(--border-h1) solid var(--color-border);
+  padding: var(--spacing-cell);
+  text-align: left;
+}
+td {
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  color: var(--color-text);
+  border: var(--border-h1) solid var(--color-border);
+  padding: var(--spacing-cell);
+  text-align: left;
+}
+.kv-table td:first-child {
+  font-family: var(--ff-heading);
+  font-weight: var(--fw-bold);
+  background: var(--color-table-alt-bg);
+}
+.quote-card td {
+  background: var(--color-callout-bg);
+  border-left: var(--border-callout) solid var(--color-primary-soft);
+}
+.quote-card p {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: var(--color-text);
+  text-indent: 0;
+  margin-top: var(--spacing-paragraph);
+  margin-bottom: var(--spacing-paragraph);
+}
+.landscape-section { max-width: var(--page-content-width-landscape); }
+.footnote {
+  font-family: var(--ff-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  text-indent: 0;
+  margin-top: var(--spacing-section);
+}
+</style>
+</head>
+<body>
+
+<section role="cover">
+  <p class="cover-kicker">MY-PETS · 第 01 集</p>
+  <p class="cover-title">猪肘争夺战</p>
+  <p class="cover-subtitle">即梦 AI 剪辑成片方案</p>
+  <p class="cover-meta">运镜 · 分镜 · 时长 · 转场 · 特效 · 音效 —— 一页讲清怎么把三条成片剪成一整集</p>
+  <p class="cover-note">主角：问天（赤色小土狗奶狗）　对手：炼狱（黑色，同款）　大佬：白城（白色成年大狗）</p>
+  <p class="cover-note">实测总时长约 20.5 秒　·　2026 年 11 月 27 日</p>
+</section>
+
+<section role="cover">
+  <nav class="doc-toc" aria-label="文档目录">
+    <p class="toc-title">目录</p>
+    <ol class="toc-list">
+      <li><a href="#ch1">一、先记住三条铁律（最重要）</a></li>
+      <li><a href="#ch2">二、成片参数（在即梦里先设好）</a></li>
+      <li><a href="#ch3">三、分镜表（按时间码直接填）</a></li>
+      <li><a href="#ch4">四、转场与特效怎么描述</a></li>
+      <li><a href="#ch5">五、音效时间轴（全片无声，需新建音轨）</a></li>
+      <li><a href="#ch6">六、可直接复制粘贴给即梦 AI 的提示词</a>
+        <ol>
+          <li><a href="#ch6-1">版本 A：一句话总述（适合"智能成片 / 一键剪辑"输入框）</a></li>
+          <li><a href="#ch6-2">版本 B：分镜版（适合支持逐段描述 / 分镜表字段的界面）</a></li>
+        </ol>
+      </li>
+      <li><a href="#ch7">七、交付前自检</a></li>
+    </ol>
+  </nav>
+</section>
+
+<section role="body" data-page-restart="1">
+  <h1 id="ch1">一、先记住三条铁律（最重要）</h1>
+  <ol>
+    <li><strong>运镜已经在素材里了，剪辑阶段不要再叠加运镜。</strong> ①是"由远到近推进"，②是"固定平视+轻微手持"，③是"背后低角度仰拍摇向天空"。在即梦里如果看到"智能运镜 / 自动推拉 / 动态缩放"之类的开关，全部关掉，否则会把原本的镜头语言搞乱。</li>
+    <li><strong>转场只用硬切（直接切）。</strong> ①②③是同一场戏的连续动作，中间不需要叠化、闪白、旋转等花哨转场。②内部的虚空裂缝光效是素材自带的，也不要后期再加一遍。</li>
+    <li><strong>三条素材都是无声画面。</strong> 全片的声音（环境音、哼唧、裂空声、叫唤、跺爪、配乐）都要在即梦里新建音轨配上，不要指望素材里有声。</li>
+  </ol>
+
+  <h1 id="ch2">二、成片参数（在即梦里先设好）</h1>
+  <table class="kv-table">
+    <thead><tr><th>项目</th><th>设置</th></tr></thead>
+    <tbody>
+      <tr><td>画幅</td><td>16:9 横屏（三条素材都是，不要裁切）</td></tr>
+      <tr><td>分辨率</td><td>768P 起；如果即梦能统一升到 1080P 也可以，但不要拉伸变形</td></tr>
+      <tr><td>帧率</td><td>跟随素材，不强行变速</td></tr>
+      <tr><td>总时长</td><td>约 20.5 秒（想更紧凑可压到 18 秒，但②的"缓慢裂开"会被削掉）</td></tr>
+      <tr><td>素材顺序</td><td>① → ② → ③，不可颠倒</td></tr>
+      <tr><td>声音</td><td>无同期声，全部后期配音效 + 配乐</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section role="storyboard" data-orientation="landscape" class="landscape-section">
+  <h1 id="ch3">三、分镜表（按时间码直接填）</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>镜号</th><th>时间码</th><th>素材</th><th>时长</th><th>画面 &amp; 运镜（素材内已有，勿再叠加）</th><th>剪辑点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>①</td><td>00:00.0 – 00:05.2</td><td>第01集-猪肘争夺战.mp4</td><td>5.2s</td><td>村口老槐树、石墩上的红烧猪肘；镜头由远到近缓慢推进，问天和炼狱从远处兴冲冲跑来、后腿站立、前爪急伸、张嘴跃跃欲试</td><td>结尾定格两狗前爪逼近猪肘 → 硬切到②</td></tr>
+      <tr><td>②-1</td><td>00:05.2 – 00:07.0</td><td>第01集-02-白影夺肘.mp4 前段</td><td>~1.8s</td><td>固定平视、轻微手持；空气泛光，竖直发光裂缝缓慢裂开；问天炼狱愣住、耳朵竖起、眼睛睁大（惊讶）</td><td>接①的逼近动作</td></tr>
+      <tr><td>②-2</td><td>00:07.0 – 00:08.6</td><td>同上</td><td>~1.6s</td><td>白城从虚空裂缝里探身、迈步现身，嘴角坏笑、胸有成竹</td><td>一镜到底，不切</td></tr>
+      <tr><td>②-3</td><td>00:08.6 – 00:10.2</td><td>同上</td><td>~1.6s</td><td>两狗挡在猪肘前、前爪护住、身体压低、警惕张嘴（护食）</td><td>一镜到底，不切</td></tr>
+      <tr><td>②-4</td><td>00:10.2 – 00:12.6</td><td>同上</td><td>~2.4s</td><td>白城从容上前，从两狗护挡间取走猪肘；两狗阻挡无力，白城抱肘得意坏笑</td><td>一镜到底，不切</td></tr>
+      <tr><td>②-5</td><td>00:12.6 – 00:15.3</td><td>同上</td><td>~2.7s</td><td>白城抱肘转身走回虚空裂缝，缝隙缓缓闭合、白光渐消；石墩空了，两狗仰头发愣</td><td>结尾空石墩 → 硬切到③</td></tr>
+      <tr><td>③</td><td>00:15.3 – 00:20.5</td><td>第01集-03-问天的不甘.mp4</td><td>5.2s</td><td>从问天背后低角度仰拍，随它视线缓缓摇向天空；问天仰头张嘴朝天叫唤、前爪跺地，画面最后停在天空、问天留在下缘</td><td>全片结束，留钩子</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">&nbsp;&nbsp;提示：②是一条完整 10.13 秒的成片，②-1～②-5 是它<strong>内部的表演段落</strong>，用于你写描述，剪辑时仍当作一条素材整体放入，不要真的拆成五条。</p>
+</section>
+
+<section role="body2">
+  <h1 id="ch4">四、转场与特效怎么描述</h1>
+  <ul>
+    <li><strong>①→②：硬切，动作接动作。</strong> 描述写法："上一段结尾两狗前爪马上碰到猪肘，直接切到下一段开场同一姿势，保持动作连贯。"</li>
+    <li><strong>②→③：硬切，留一拍空白。</strong> 描述写法："白城走进虚空、裂缝完全闭合、石墩空了之后，直接切到问天独自站在空石墩前。"</li>
+    <li><strong>特效：素材内已有，不要叠加。</strong> ②的发光裂缝、白光渐消是拍摄时就在画面里的，后期只需保留，不要再加"粒子 / 光斑 / 闪白 / 转场特效"。</li>
+    <li><strong>调色：统一暖色写实。</strong> 三条都是写实摄影风，建议加一层统一的暖色调 LUT，轻微提升对比度，别做成滤镜感很强的风格化。</li>
+    <li><strong>字幕（可选）：</strong> 片头 0.5 秒标题「第 01 集 · 猪肘争夺战」；片尾 0.8 秒「白城是谁？」做钩子。不要对白字幕（全片无台词）。</li>
+  </ul>
+
+  <h1 id="ch5">五、音效时间轴（全片无声，需新建音轨）</h1>
+  <table>
+    <thead><tr><th>时间</th><th>音效</th></tr></thead>
+    <tbody>
+      <tr><td>00:00–00:05.2</td><td>村口环境底噪（风声、远处鸟叫）+ 两只小狗急促鼻息和兴奋哼唧，结尾带一点"扑空"的期待感</td></tr>
+      <tr><td>00:05.2–00:07.0</td><td>低频嗡鸣渐起 + 类似裂帛/玻璃开裂的轻响 + 两狗短促惊讶的哼声</td></tr>
+      <tr><td>00:07.0–00:08.6</td><td>白城轻巧脚步声 + 一声低沉得意的哼哼</td></tr>
+      <tr><td>00:08.6–00:10.2</td><td>两狗护食时呜呜的提醒声（不要做成凶狠攻击声）</td></tr>
+      <tr><td>00:10.2–00:12.6</td><td>轻微拉扯/衣物摩擦声 + 两狗无奈的小呜咽</td></tr>
+      <tr><td>00:12.6–00:15.3</td><td>脚步远去 + 裂缝闭合的轻柔吸合声 + 白光消散的余韵</td></tr>
+      <tr><td>00:15.3–00:20.5</td><td>安静一拍 → 问天汪汪朝天叫唤 + 爪子跺地声 + 叫声回荡渐弱</td></tr>
+    </tbody>
+  </table>
+  <p><strong>配乐：</strong>前段轻快俏皮；白城登场切悬疑/戏剧张力；结尾收在悬念上，不要写成悲伤。音量压在音效之下。</p>
+
+  <h1 id="ch6">六、可直接复制粘贴给即梦 AI 的提示词</h1>
+  <h2 id="ch6-1">版本 A：一句话总述（适合"智能成片 / 一键剪辑"输入框）</h2>
+  <p class="callout">&nbsp;&nbsp;把这三个视频按顺序剪成一集 20 秒左右的短片。画幅 16:9，保持原片运镜，不要加自动推拉、不要加转场特效。①到②、②到③都用硬切。保留第二段里白城撕开虚空的光效，不要后期再叠特效。三段素材都没有原声，请配上村口环境音、小狗兴奋哼唧与惊讶哼声、虚空裂开和闭合的轻响、白城得意的哼哼、问天最后朝天叫唤和跺爪声；背景音乐前段轻快俏皮，白城出现时转悬疑，结尾留悬念。可选片头标题"第01集 猪肘争夺战"，片尾字幕"白城是谁？"。全片无台词，不要对白字幕。</p>
+
+  <h2 id="ch6-2">版本 B：分镜版（适合支持逐段描述 / 分镜表字段的界面）</h2>
+  <table class="quote-card">
+    <tbody>
+      <tr><td>
+        <p><strong>第 1 段（0–5.2 秒）</strong>：素材"第01集-猪肘争夺战.mp4"整段使用。村口老槐树下石墩摆着红烧大猪肘，镜头由远到近推进，赤色小奶狗问天和黑色小奶狗炼狱从远处跑来、前爪急伸、张嘴跃跃欲试。结尾定格两狗前爪逼近猪肘。配急促鼻息和兴奋哼唧。</p>
+        <p><strong>第 2 段（5.2–15.3 秒）</strong>：素材"第01集-02-白影夺肘.mp4"整段使用，固定平视镜头不要加运镜。开场硬切承接上段：空气泛光、竖直发光裂缝缓慢裂开，两狗先是一脸惊讶；白色成年大狗白城从裂缝中现身、嘴角坏笑；两狗立刻挡在猪肘前护食；白城从容从护挡间取走猪肘、一脸得意；白城抱肘走回虚空，裂缝缓慢闭合，石墩空了，两狗仰头发愣。配裂空轻响、惊讶哼声、护食呜呜、得意哼哼、闭合吸合声。</p>
+        <p><strong>第 3 段（15.3–20.5 秒）</strong>：素材"第01集-03-问天的不甘.mp4"整段使用。硬切，从问天背后低角度仰拍、随视线摇向天空，问天仰头朝天叫唤、跺着前爪，画面最后停在天空。先安静一拍，再配汪汪叫唤、跺地声和渐弱回响。结尾留钩子。</p>
+      </td></tr>
+    </tbody>
+  </table>
+
+  <h1 id="ch7">七、交付前自检</h1>
+  <ul>
+    <li>☐ 顺序是 ①②③，总时长约 20.5 秒</li>
+    <li>☐ 没有二次运镜、没有花哨转场</li>
+    <li>☐ ②的裂缝光效保留，没有重复叠加</li>
+    <li>☐ 声音齐全：环境音 / 哼唧 / 裂空 / 叫唤 / 跺爪 / 配乐</li>
+    <li>☐ 片尾钩子（白城是谁）在</li>
+    <li>☐ 16:9、无黑边、无拉伸</li>
+  </ul>
+  <p class="footnote">本文档只是给即梦 AI 的剪辑描述方案，不是视频交付物。三条原始成片见 videos/第01集-*.mp4。</p>
+</section>
+
+</body>
+</html>
